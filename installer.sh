@@ -71,7 +71,7 @@ installZsh()
         chsh -s $(which zsh)
 
         echo -e "\n Downloading OH-MY-ZSH"
-        sh-c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+        sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
         echo -e "\n Downloading powerLevel10K"
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
