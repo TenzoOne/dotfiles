@@ -47,7 +47,7 @@ installTilix()
         alreadyInstalled
     else
         read -sp $'\n Enter sudo password: ' password
-        echo "$password" | sudo -S dnf install tilix
+        echo "$password" | sudo -S dnf install -y tilix
     fi
 
     read input
@@ -64,7 +64,7 @@ installZsh()
                 
         read -sp $'\n Enter sudo password: ' password 
 
-        echo "$password" | sudo -S dnf install zsh
+        echo "$password" | sudo -S dnf install -y zsh
                 
 
         echo -e "\n Making zsh by default"
@@ -79,7 +79,6 @@ installZsh()
         read -p "Do you want to take dotfiles from my repo [y/n]: " yesno
             case $yesno in
                 [Yy]*) 
-                        git clone https://github.com/TenzoOne/dotfiles.git
                         read -sp $'\n Enter sudo password' password 
                         echo "$password" | sudo -S sudo cp -r zsh/.oh-my-zsh zsh/.p10k.zsh zsh/.zshrc $HOME
 
