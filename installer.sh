@@ -91,24 +91,25 @@ do
                 echo "$password" | sudo -S dnf update
                 echo "$password" | sudo -S dnf install zsh
                 
+
+                echo -e "\n Making zsh by default"
+                chsh -s $(which zsh)
+
+                echo -e "\n Downloading OH-MY-ZSH"
+                sh-c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+
+                echo -e "\n Downloading powerLevel10K"
+                git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
                 read -p "Do you want to take dotfiles from my repo [y/n]: " yesno
                     case $yesno in
                         [Yy]*) 
-                                
+                                git clone https://github.com/TenzoOne/dotfiles.git
                                 read -sp $'\n Enter sudo password' password 
-                                echo "$password" | sudo -S sudo cp -r zsh/.oh-my-zsh zsh/.p10k.zsh zsh/.zshrc /home/
+                                echo "$password" | sudo -S sudo cp -r zsh/.oh-my-zsh zsh/.p10k.zsh zsh/.zshrc $HOME
 
                              ;;
                         [Nn]*) 
-
-                                echo -e "\n Making zsh by default"
-                                chsh -s $(which zsh)
-
-                                echo -e "\n Downloading OH-MY-ZSH"
-                                sh-c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-
-                                echo -e "\n Downloading powerLevel10K"
-                                git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
                                 read -p "Do you want configure  powerLevel10K [y/n]: " yn
                                     case $yn in 
@@ -118,10 +119,6 @@ do
                             ;;
                     esac
 
-                
-                
-                
-                
             fi
             sleep 3
             ;;
