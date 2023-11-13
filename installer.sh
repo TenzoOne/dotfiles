@@ -81,7 +81,8 @@ installZsh()
                 [Yy]*) 
                         read -sp $'\n Enter sudo password' password 
                         echo "$password" | sudo -S sudo cp -r zsh/.oh-my-zsh zsh/.p10k.zsh zsh/.zshrc $HOME
-
+                        
+                        read input
                         ;;
                 [Nn]*) 
 
@@ -90,6 +91,8 @@ installZsh()
                                 [Yy]*) p10k configure ;;
                                 [Nn]*) echo "aborted"; return 1 ;;
                             esac
+
+                        read input
                     ;;
             esac
 
